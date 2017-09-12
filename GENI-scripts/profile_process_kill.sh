@@ -1,1 +1,2 @@
-kill -9 `ps aux | grep profile_process.sh | awk '{print $2}'`
+procName=$1
+kill -9 `ps aux | grep $procName | awk '{print $2}'`

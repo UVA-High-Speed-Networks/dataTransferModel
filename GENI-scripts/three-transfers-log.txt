@@ -1,0 +1,124 @@
+[sm8kk@fdt-uva GENI-scripts]$ ./transfer_input_param_CPU_disk_cloudlab.sh temp.txt 
+Header found
+sendCpu = 0, sendIo = 20, recvCpu = 0, recvIo = 40
+Begin transfer 1
+ssh -i /home/sm8kk/.ssh/yes sm8kk0@c220g1-031102.wisc.cloudlab.us to clear the RAM so that the file is read from disk
+Connection to c220g1-031102.wisc.cloudlab.us closed.
+Starting the logging for CPU, Disk, and Network Utilization using sar and iostat as background processes..
+Also start collecting CPU usage and num of processes time series..
+ssh -i /home/sm8kk/.ssh/yes sm8kk0@c220g1-031102.wisc.cloudlab.us to run: iostat, sar, profiler, iotop
+ssh -i /home/sm8kk/.ssh/yes sm8kk0@c220g1-031107.wisc.cloudlab.us to run: iostat, sar, profiler, iotop
+Stress CPU and IO at the send host based on the input parameters
+Execute sm8kk0@c220g1-031102.wisc.cloudlab.us: ./disk_stress_duty_cycle.sh 20
+Stress CPU and IO at the receive host based on the input parameters
+Execute sm8kk0@c220g1-031107.wisc.cloudlab.us: ./disk_stress_duty_cycle.sh 40
+Start transfer DISK to DISK: 1
+Running at send node: globus-url-copy -vb -p 1 file:/dataTransferDisk/30_GB_file ftp://10.10.1.2:5000/dataTransferDisk/30GB_data_out
+rm: cannot remove ‘/users/sm8kk0/scripts/transfer_end_flag.txt’: No such file or directory
+rm: cannot remove ‘/users/sm8kk0/scripts/transfer_end_flag.txt’: No such file or directory
+rm: cannot remove ‘/users/sm8kk0/scripts/transfer_end_flag.txt’: No such file or directory
+rm: cannot remove ‘/users/sm8kk0/scripts/transfer_end_flag.txt’: No such file or directory
+End transfer: 1, and send transfer end flag to send and receive nodes
+Killing all stress utility at send and receive nodes
+Execute sm8kk0@c220g1-031102.wisc.cloudlab.us: kill sendIO processes
+Execute sm8kk0@c220g1-031102.wisc.cloudlab.us: kill recvIO processes
+Killing the sar and iostat processes immediately
+bash: line 1: 27826 Terminated              sar -u -d -n DEV 1 > /users/sm8kk0/logs/sar_log_send_transfer_1.txt
+bash: line 1: 27822 Terminated              iostat -x 1 > /users/sm8kk0/logs/iostat_log_send_transfer_1.txt
+bash: line 1: 29984 Terminated              sar -u -d -n DEV 1 > /users/sm8kk0/logs/sar_log_recv_transfer_1.txt
+bash: line 1: 29973 Terminated              iostat -x 1 > /users/sm8kk0/logs/iostat_log_recv_transfer_1.txt
+grid_log_send_to_recv_transfer_1.txt                                                                                                                                                            100% 4573     4.5KB/s   00:00    
+iostat_log_send_transfer_1.txt                                                                                                                                                                  100%  190KB 189.6KB/s   00:00    
+iotop_log_send_transfer_1.txt                                                                                                                                                                   100%  207KB 206.6KB/s   00:00    
+sar_log_send_transfer_1.txt                                                                                                                                                                     100% 1023KB   1.0MB/s   00:00    
+process_cpu_log_send_transfer_1.txt                                                                                                                                                             100%   25KB  25.4KB/s   00:00    
+diskio_log_send_transfer_1.txt                                                                                                                                                                  100%  312     0.3KB/s   00:00    
+iostat_log_recv_transfer_1.txt                                                                                                                                                                  100%  191KB 191.4KB/s   00:00    
+iotop_log_recv_transfer_1.txt                                                                                                                                                                   100%  275KB 274.6KB/s   00:00    
+sar_log_recv_transfer_1.txt                                                                                                                                                                     100% 1032KB   1.0MB/s   00:00    
+process_cpu_log_recv_transfer_1.txt                                                                                                                                                             100%   47KB  46.7KB/s   00:00    
+diskio_log_recv_transfer_1.txt                                                                                                                                                                  100%  339     0.3KB/s   00:00    
+Delete the logs from the send and receive hosts
+Sleep for 200 seconds...
+sendCpu = 10, sendIo = 0, recvCpu = 30, recvIo = 0
+Begin transfer 2
+ssh -i /home/sm8kk/.ssh/yes sm8kk0@c220g1-031102.wisc.cloudlab.us to clear the RAM so that the file is read from disk
+Connection to c220g1-031102.wisc.cloudlab.us closed.
+Starting the logging for CPU, Disk, and Network Utilization using sar and iostat as background processes..
+Also start collecting CPU usage and num of processes time series..
+ssh -i /home/sm8kk/.ssh/yes sm8kk0@c220g1-031102.wisc.cloudlab.us to run: iostat, sar, profiler, iotop
+ssh -i /home/sm8kk/.ssh/yes sm8kk0@c220g1-031107.wisc.cloudlab.us to run: iostat, sar, profiler, iotop
+Stress CPU and IO at the send host based on the input parameters
+Execute sm8kk0@c220g1-031102.wisc.cloudlab.us: stress -c 10
+Stress CPU and IO at the receive host based on the input parameters
+Execute sm8kk0@c220g1-031102.wisc.cloudlab.us: stress -c 30
+Start transfer DISK to DISK: 2
+Running at send node: globus-url-copy -vb -p 1 file:/dataTransferDisk/30_GB_file ftp://10.10.1.2:5000/dataTransferDisk/30GB_data_out
+rm: cannot remove ‘/users/sm8kk0/scripts/transfer_end_flag.txt’: No such file or directory
+rm: cannot remove ‘/users/sm8kk0/scripts/transfer_end_flag.txt’: No such file or directory
+End transfer: 2, and send transfer end flag to send and receive nodes
+Killing all stress utility at send and receive nodes
+Execute sm8kk0@c220g1-031102.wisc.cloudlab.us: pkill stress
+Execute sm8kk0@c220g1-031107.wisc.cloudlab.us: pkill stress
+Killing the sar and iostat processes immediately
+bash: line 1: 30110 Terminated              sar -u -d -n DEV 1 > /users/sm8kk0/logs/sar_log_send_transfer_2.txt
+bash: line 1: 30092 Terminated              iostat -x 1 > /users/sm8kk0/logs/iostat_log_send_transfer_2.txt
+bash: line 1:  2480 Terminated              sar -u -d -n DEV 1 > /users/sm8kk0/logs/sar_log_recv_transfer_2.txt
+bash: line 1:  2485 Terminated              iostat -x 1 > /users/sm8kk0/logs/iostat_log_recv_transfer_2.txt
+grid_log_send_to_recv_transfer_2.txt                                                                                                                                                            100% 3607     3.5KB/s   00:00    
+iostat_log_send_transfer_2.txt                                                                                                                                                                  100%  154KB 153.7KB/s   00:01    
+iotop_log_send_transfer_2.txt                                                                                                                                                                   100%  156KB 156.1KB/s   00:00    
+sar_log_send_transfer_2.txt                                                                                                                                                                     100%  815KB 815.3KB/s   00:00    
+process_cpu_log_send_transfer_2.txt                                                                                                                                                             100%   20KB  19.9KB/s   00:00    
+scp: /users/sm8kk0/logs/diskio_log_send_transfer_2.txt: No such file or directory
+iostat_log_recv_transfer_2.txt                                                                                                                                                                  100%  147KB 146.7KB/s   00:00    
+iotop_log_recv_transfer_2.txt                                                                                                                                                                   100%  190KB 189.8KB/s   00:01    
+sar_log_recv_transfer_2.txt                                                                                                                                                                     100%  825KB 824.7KB/s   00:00    
+process_cpu_log_recv_transfer_2.txt                                                                                                                                                             100%   34KB  33.9KB/s   00:00    
+scp: /users/sm8kk0/logs/diskio_log_recv_transfer_2.txt: No such file or directory
+Delete the logs from the send and receive hosts
+Sleep for 200 seconds...
+sendCpu = 10, sendIo = 15, recvCpu = 25, recvIo = 30
+Begin transfer 3
+ssh -i /home/sm8kk/.ssh/yes sm8kk0@c220g1-031102.wisc.cloudlab.us to clear the RAM so that the file is read from disk
+Connection to c220g1-031102.wisc.cloudlab.us closed.
+Starting the logging for CPU, Disk, and Network Utilization using sar and iostat as background processes..
+Also start collecting CPU usage and num of processes time series..
+ssh -i /home/sm8kk/.ssh/yes sm8kk0@c220g1-031102.wisc.cloudlab.us to run: iostat, sar, profiler, iotop
+ssh -i /home/sm8kk/.ssh/yes sm8kk0@c220g1-031107.wisc.cloudlab.us to run: iostat, sar, profiler, iotop
+Stress CPU and IO at the send host based on the input parameters
+Execute sm8kk0@c220g1-031102.wisc.cloudlab.us: stress -c 10
+Execute sm8kk0@c220g1-031102.wisc.cloudlab.us: ./disk_stress_duty_cycle.sh 15
+Stress CPU and IO at the receive host based on the input parameters
+Execute sm8kk0@c220g1-031102.wisc.cloudlab.us: stress -c 25
+Execute sm8kk0@c220g1-031107.wisc.cloudlab.us: ./disk_stress_duty_cycle.sh 30
+Start transfer DISK to DISK: 3
+Running at send node: globus-url-copy -vb -p 1 file:/dataTransferDisk/30_GB_file ftp://10.10.1.2:5000/dataTransferDisk/30GB_data_out
+rm: cannot remove ‘/users/sm8kk0/scripts/transfer_end_flag.txt’: No such file or directory
+rm: cannot remove ‘/users/sm8kk0/scripts/transfer_end_flag.txt’: No such file or directory
+rm: cannot remove ‘/users/sm8kk0/scripts/transfer_end_flag.txt’: No such file or directory
+rm: cannot remove ‘/users/sm8kk0/scripts/transfer_end_flag.txt’: No such file or directory
+End transfer: 3, and send transfer end flag to send and receive nodes
+Killing all stress utility at send and receive nodes
+Execute sm8kk0@c220g1-031102.wisc.cloudlab.us: kill sendIO processes
+Execute sm8kk0@c220g1-031102.wisc.cloudlab.us: pkill stress
+Execute sm8kk0@c220g1-031102.wisc.cloudlab.us: kill recvIO processes
+Execute sm8kk0@c220g1-031107.wisc.cloudlab.us: pkill stress
+Killing the sar and iostat processes immediately
+bash: line 1: 32047 Terminated              sar -u -d -n DEV 1 > /users/sm8kk0/logs/sar_log_send_transfer_3.txt
+bash: line 1: 32034 Terminated              iostat -x 1 > /users/sm8kk0/logs/iostat_log_send_transfer_3.txt
+bash: line 1:  6517 Terminated              sar -u -d -n DEV 1 > /users/sm8kk0/logs/sar_log_recv_transfer_3.txt
+bash: line 1:  6528 Terminated              iostat -x 1 > /users/sm8kk0/logs/iostat_log_recv_transfer_3.txt
+grid_log_send_to_recv_transfer_3.txt                                                                                                                                                            100% 4435     4.3KB/s   00:00    
+iostat_log_send_transfer_3.txt                                                                                                                                                                  100%  187KB 187.3KB/s   00:00    
+iotop_log_send_transfer_3.txt                                                                                                                                                                   100%  197KB 196.5KB/s   00:00    
+sar_log_send_transfer_3.txt                                                                                                                                                                     100%  995KB 994.7KB/s   00:01    
+process_cpu_log_send_transfer_3.txt                                                                                                                                                             100%   25KB  24.9KB/s   00:00    
+diskio_log_send_transfer_3.txt                                                                                                                                                                  100%  236     0.2KB/s   00:00    
+iostat_log_recv_transfer_3.txt                                                                                                                                                                  100%  187KB 187.3KB/s   00:01    
+iotop_log_recv_transfer_3.txt                                                                                                                                                                   100%  260KB 259.9KB/s   00:00    
+sar_log_recv_transfer_3.txt                                                                                                                                                                     100% 1004KB   1.0MB/s   00:00    
+process_cpu_log_recv_transfer_3.txt                                                                                                                                                             100%   45KB  44.7KB/s   00:00    
+diskio_log_recv_transfer_3.txt                                                                                                                                                                  100%  235     0.2KB/s   00:00    
+Delete the logs from the send and receive hosts
+Sleep for 200 seconds...
