@@ -15,3 +15,16 @@ Usage: ./transfer_input_param_CPU_disk_cloudlab.sh input-param-cloudlab.csv > th
 Helper scripts:
 profile_process.sh: profile a particular process for its CPU usage and track the number of running processes
 profile_process_kill.sh: Kills the profiler process
+
+
+Input parameters:
+
+transfer num: The transfer number. It must be unique.
+
+sendCpu: Number of "stress -c" processes to be executed at the sender.
+
+sendDisk: Percentage of time within a 10 second interval a separate disk write process runs. Example if it is 70, then in an interval of 10 seconds a write process writes to the disk for 7 seconds and sleeps for 3 seconds. This operation of disk write and sleep within 10 seconds is periodically repeated throughout the duration of the transfer. This is executed at the sender.
+
+recvCpu: similar to sendCpu but executed at the receiver.
+
+recvDisk: similar to sendDisk but executed at the receiver.
