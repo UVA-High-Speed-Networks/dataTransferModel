@@ -1,0 +1,4 @@
+#transfer,sendCpu,sendIo,recvCpu,recvIo
+1,0,20,0,40
+2,10,0,30,0
+3,10,15,25,30
