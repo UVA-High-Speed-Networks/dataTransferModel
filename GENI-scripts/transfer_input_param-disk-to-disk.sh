@@ -1,4 +1,4 @@
-#Transfers file from IDC --> FDT Uva, using iperf3 1 stream
+#Transfers file from Node1 --> Node2, using iperf3 1 stream
 
 #cd /home/uvauser/sm8kk
 #file="10_GB_file.txt"
