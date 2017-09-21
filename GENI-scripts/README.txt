@@ -1,10 +1,17 @@
 Transfer tests that also collects sar and iostat logs:
 
-1. transfer-simple-num-runs.sh: Runs data transfer experiment for a given number of test
 
-2. transfer_input_param-disk-to-disk.sh: Runs disk to disk transfers between two GENI nodes (Node1 ---> Node2), using iperf3 1 stream. Input parameters are taken from a csv file to extract the transfer num, sendCpu load, sendDisk load, recvCpu load, recvDisk load. It collects sar, iostat, and top logs for the entire duration of the transfer. The external load for the disk i.e., sendDisk and recvDisk is not implemented. The orchestration of the data transfer, log collection, running contenting stress jobs is run from our FDT server.
+1. transfer_input_param-disk-to-disk.sh: Runs disk to disk transfers between two GENI nodes (Node1 ---> Node2), using iperf3 1 stream. Input parameters are taken from a csv file to extract the transfer num, sendCpu load, sendDisk load, recvCpu load, recvDisk load. It collects sar, iostat, and top logs for the entire duration of the transfer. The external load for the disk i.e., sendDisk and recvDisk is not implemented. The orchestration of the data transfer, log collection, running contenting stress jobs is run from our FDT server. The logs generated at Node1 and Node2 are copied back to FDT. 
+Helper scripts: profile_process.sh, profile_process_kill.sh
 
 
-transfer_input_param-mem-mem.sh: For memory to memory transfers.
+2. transfer_input_param-mem-mem.sh: Same as that of (1) but its executes memory to memory transfers.
+
+3. transfer_input_param_CPU_disk_cloudlab.sh: This is a newest and advanced script. It runs disk to disk transfers between two cloudlab hosts (Node1 ---> Node2). The script is again run from FDT like in (1 and 2). Input parameters are taken from a csv file to extract the transfer num, sendCpu load, sendDisk load, recvCpu load, recvDisk load. It collects sar, iostat, and top logs for the entire duration of the transfer. All the input parameters that adds external load are implemented in this script. 
+The logs generated are copied back to FDT.
+Additional helper scripts: disk_stress_duty_cycle.sh, sleepTime.py
+Usage: ./transfer_input_param_CPU_disk_cloudlab.sh input-param-cloudlab.csv > three-transfers-log.txt
+
+Helper scripts:
 profile_process.sh: profile a particular process for its CPU usage and track the number of running processes
 profile_process_kill.sh: Kills the profiler process
