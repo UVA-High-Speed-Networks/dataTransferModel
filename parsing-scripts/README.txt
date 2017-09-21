@@ -20,6 +20,27 @@ transfer: Indicates the data transfer number. It is unique.
 
 sendCpuUtil: Average of the total CPU utilization (100 - CPU idle time%) taken over all the cores at the sender.
 
+sendDiskUtil: Average of the total disk utilization by the sender.
+
 sendProcNum: Average of the total number of processes running at the sender.
 
-sendTransferCpu: 
+sendTransferCpu: Average CPU utilization by the data transfer process (adjusted for multic-core operation, but found that the data transfer used only one core) at the sender.
+
+transferDiskRead: Average disk read speed in bps by the data transfer process at the sender.
+
+recvCpuUtil: Average of the total CPU utilization (100 - CPU idle time%) taken over all the cores at the receiver.
+
+recvDiskUtil: Average of the total disk utilization by the receiver.
+
+recvProcNum: Average of the total number of processes running at the receiver.
+
+recvTransferCpu: Average CPU utilization by the data transfer process (adjusted for multic-core operation, but found that the data transfer used only one core) at the receiver.
+
+transferDiskWrite: Average disk write speed in bps by the data transfer process at the receiver.
+
+dur: duration of the transfer
+
+size: size of the transfer
+
+rate: Average rate of the transfer
+
